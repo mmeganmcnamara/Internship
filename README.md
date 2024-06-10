@@ -1,2 +1,2 @@
-# Internship
-Created a dynamic design to implement all companys under the Newton Group. Needed to be visually appealling and informational. 
+# Internship - first assignment
+I created a dynamic design to implement all companies under the Newton Group. It needed to be visually appealing and informational. 
