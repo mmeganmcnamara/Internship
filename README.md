@@ -1,2 +1,2 @@
 # Internship
-Projects worked on during my 8 week internship in Rome, Italy. 
+Projects worked on during my 8 week UX UI internship in Rome, Italy. 
