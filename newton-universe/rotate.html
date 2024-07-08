@@ -1,0 +1,69 @@
+<!--Goal: for https://www.newton.it/universo-newton/ 
+    logos to be spinning around main logo like a planetary system. 
+    Stop moving on hover, greyscale turns off. Click to be directed to new webpage.-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    </head>
+    <link rel="stylesheet" href="/blankslate/rotate.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src = "script.js"></script>
+<body>
+    <div id="container">
+        <div id="center-text" data-text-en="Newton Universe" data-text-it="Universo Newton">Newton Universe</div> 
+        <div id="container2">
+        <div class="item" onclick="showInfo(this)"
+            data-link="https://www.newton.it/digital-academy/">
+            <img src="Logos-Svg-colors/Loghi-05.svg" alt="Digitial Academy">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/management-consulting/">
+            <img src="Logos-Svg-colors/Loghi-04.svg" alt="Management Consulting">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/iperdesign/">
+            <img src="Logos-Svg-colors/Loghi-03.svg" alt="IperDesign">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/newton-house/">
+            <img src="Logos-Svg-colors/Loghi.svg" alt="Newton House"> <!--The image has a different color than the others-->
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/des/">
+            <img src="Logos-Svg-colors/Loghi-11.svg" alt="Digital Event System by Newton">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/newton-factory/">
+            <img src="Logos-Svg-colors/Loghi-09.svg" alt="Newton Factory">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/global-inclusion/">
+            <img src="Logos-Svg-colors/Loghi-08.svg" alt="Comitato Global Inclusion">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/live-communication/">
+            <img src="Logos-Svg-colors/Loghi-07.svg" alt="Live Communication">
+        </div>
+
+        <div class="item" onclick="showInfo(this)" 
+            data-link="https://www.newton.it/ile/">
+            <img src="Logos-Svg-colors/Loghi-06.svg" alt="ILE: Immersive Learning Experience">
+        </div>
+        
+    </div>
+        </div>
+    <div id="info-box"></div>
+</body>
+</html>
+

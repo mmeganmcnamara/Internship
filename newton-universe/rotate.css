@@ -1,0 +1,247 @@
+@font-face {
+  font-family: 'Sohne-Dreiviertelfett';
+  src: url('/blankslate/Font-Newton-Website/Söhne-Dreiviertelfett.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body { /*adjust positioning for actual website layout*/
+  padding: 1em;
+  background-color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#container {
+    width: 200px; /*adjust width + height to make red sqaure larger or smaller*/
+    height: 200px;
+    margin: 10px auto;
+    position: relative;
+    /*top: 50%;
+    left: 50%;*/
+    
+}
+#container::after{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: rotate(17deg);
+    background: #ff2b2b;
+    z-index: -1;
+}
+#container2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: spin 50s linear infinite;
+    transition: width 0.5 ease, height 0.5 ease, transform 0.5s ease;
+    
+}
+#center-text { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.5em;
+    font-family: 'Sohne-Dreiviertelfett', sans-serif;
+    color: white;
+    text-align: center;
+    /*animation: linear reverse;*/
+    transform: translate(-50%,-50%);  /*counter act container angle*/
+
+}
+
+.item {
+  width: 80px; /*adjust width + height to make white squares larger or smaller */
+  height: 80px;
+  line-height: 25px;
+  border-radius: 0%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: white;
+  animation: spin 50s linear infinite reverse;
+
+}
+
+.item img{ 
+    filter: grayscale(100%); 
+    -webkit-filter: grayscale(100%);
+    max-width: 100%;  
+    max-height: 100%;
+}
+
+.item:hover img{
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+
+#container2:has(.item:hover),
+#container2:has(.item:hover) > .item{
+    animation-play-state: paused;
+}
+.item:hover{
+    animation-play-state: paused;
+    
+  }
+
+@keyframes spin {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+#container2 .item {
+    cursor: pointer;
+}
+
+/* Mobile Design */
+@media (max-width: 600px) {
+  body {
+    padding: 0.5em;
+  }
+  #container {
+    width: 100px;
+    height: 100px;
+    /*max-width: 100%;
+    max-height: 100%;*/
+  }
+  #container2 {
+    width: 50px;
+    height: 50px;
+    top: 30px;
+    left: 22px;
+    right: 0;
+    bottom: 0;
+  }
+
+ /* #container::after {
+    transform: rotate(17deg);
+  }*/
+
+
+  #center-text {
+    font-size: 0.8em;
+  }
+
+  .item {
+    width: 40px;
+    height: 40px;
+  }
+  
+}
+
+@media (max-width: 400px) {
+ /*#container::after{
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+ }*/
+ #container {
+  width: 80px;
+  height: 80px;
+}
+  #container2 {
+    width: 30px;
+    height: 30px;
+    /*transform: translate(-50%, -50%);*/
+  }
+  #center-text {
+    font-size: 0.7em;
+  }
+
+  .item {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/*
+#info-box { 
+    margin-top: 20px;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    color:white;
+    font-size:large;
+    border: 1px solid #000;
+    background: rgba(194, 20, 20, 0.844); /*what color should this be
+    animation: 1s linear forwards; /*1s linear slidein;
+}
+/* SLIDE IN
+  @keyframes slidein{
+      from{
+          transform: translateX(100%) translateY(-50%);
+          bottom: 10%
+      }
+      to{
+          transform: translateX(0%) translateY(-50%);
+      }
+  } */
+
+  /*Zoom in effect https://codepen.io/dimsemenov/pen/kVbqdN 
+.mfp-zoom-in {
+  
+  /* start state 
+  .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.2s ease-in-out; 
+    transform: scale(0.8); 
+  }
+  
+  &.mfp-bg {
+    opacity: 0;
+	  transition: all 0.3s ease-out;
+  }
+  
+  animate in
+  &.mfp-ready {
+      .mfp-with-anim {
+      opacity: 1;
+      transform: scale(1);
+      }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+  
+  /* animate out 
+  &.mfp-removing {
+    
+    .mfp-with-anim {
+      transform: scale(0.8); 
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+    
+  }
+  
+}
+#info-content h1 {
+  color: #000;  // Black color for the header
+  font-size: 24px;  // Larger font size for the heading
+}
+
+#info-content p {
+  color: #666;  // Dark grey for the paragraph text
+  font-size: 16px;  // Normal font size for readability
+  line-height: 1.5;  // Line height for better readability of paragraph text
+}
+
+*/
