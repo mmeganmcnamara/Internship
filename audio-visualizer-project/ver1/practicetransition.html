@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js 3D Sphere and Heart</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #controls { position: absolute; top: 10px; left: 10px; z-index: 10; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button onclick="morphToSphere()">Sphere</button>
+        <button onclick="morphToHeart()">Heart</button>
+    </div>
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script>
+        // Initialize scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Add lighting
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 20, 20);
+        scene.add(light);
+
+        // Create sphere geometry and material
+        const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const material = new THREE.MeshPhongMaterial({ color: 0xff0000, flatShading: true });
+        const mesh = new THREE.Mesh(sphereGeometry, material);
+        scene.add(mesh);
+
+        // Create heart shape geometry
+        const heartShape = new THREE.Shape();
+        const x = -2.5, y = -5;
+        heartShape.moveTo(x + 2.5, y + 2.5);
+        heartShape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+        heartShape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
+        heartShape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
+        heartShape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
+        heartShape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
+        heartShape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+
+        const extrudeSettings = { depth: 2, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+        const heartGeometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+        heartGeometry.scale(0.5, 0.5, 0.5);
+
+        // Ensure the heart geometry has the same number of vertices as the sphere geometry
+        const sphereVertices = sphereGeometry.attributes.position.array.length;
+        const heartVertices = heartGeometry.attributes.position.array.length;
+        
+        function matchVertexCount(geometry, targetVertexCount) {
+            const currentVertexCount = geometry.attributes.position.count;
+            const vertices = geometry.attributes.position.array;
+
+            const newVertices = new Float32Array(targetVertexCount * 3);
+            for (let i = 0; i < targetVertexCount; i++) {
+                const vertexIndex = i % currentVertexCount;
+                newVertices[i * 3] = vertices[vertexIndex * 3];
+                newVertices[i * 3 + 1] = vertices[vertexIndex * 3 + 1];
+                newVertices[i * 3 + 2] = vertices[vertexIndex * 3 + 2];
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(newVertices, 3));
+        }
+
+        if (heartVertices < sphereVertices) {
+            matchVertexCount(heartGeometry, sphereVertices / 3);
+        } else if (sphereVertices < heartVertices) {
+            matchVertexCount(sphereGeometry, heartVertices / 3);
+        }
+
+        // Set camera position
+        camera.position.z = 20;
+
+        // Morph functions
+        function morphToHeart() {
+            const targetPositions = heartGeometry.attributes.position.array;
+            new TWEEN.Tween(mesh.geometry.attributes.position.array)
+                .to(targetPositions, 2000)
+                .easing(TWEEN.Easing.Elastic.InOut)
+                .onUpdate(() => {
+                    mesh.geometry.attributes.position.needsUpdate = true;
+                })
+                .start();
+        }
+
+        function morphToSphere() {
+            const targetPositions = sphereGeometry.attributes.position.array;
+            new TWEEN.Tween(mesh.geometry.attributes.position.array)
+                .to(targetPositions, 2000)
+                .easing(TWEEN.Easing.Elastic.InOut)
+                .onUpdate(() => {
+                    mesh.geometry.attributes.position.needsUpdate = true;
+                })
+                .start();
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            TWEEN.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Resize handling
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
