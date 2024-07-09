@@ -1,0 +1,101 @@
+<!--Thank you https://preziotte.com/blog/partymode/-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+
+        <title>Party Mode :: An audio visualizer experiment.</title>
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="icomoon/style.css">
+        <link rel="stylesheet" href="css/style.css">
+
+<!--         <script src="https://cwilso.github.io/AudioContext-MonkeyPatch/AudioContextMonkeyPatch.js"></script> -->
+<!--         <script src="bower_components/underscore/underscore.js"></script> -->
+<!--         <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script> -->
+        <script src="js/d3.js"></script>
+        <script src="js/d3.hexbin.v0.min.js?5c6e4f0"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/mousetrap.js"></script>
+        <script src="js/id3-minimized.js"></script>
+        <script src="js/main.js"></script>
+       <!-- <script src="//connect.soundcloud.com/sdk.js"></script>-->
+        
+
+
+ <!--        <script> $(document).ready(function() { App.init(); }); </script> -->
+    </head>
+
+    <body>
+
+        <!--Text to speech button
+        <input type="text" id="textInput" placeholder="Enter text here">
+        <button id="synthesizeButton">Enter</button>-->
+
+
+        <div id="dragover" class="dragover"></div>
+        <div id="tooltip" class="tooltip"></div>
+        <div class="md-modal md-effect-1" id="modal-about">
+            <div class="md-content">
+                <!-- <h3>Credits</h3> -->
+                <div style='line-height: 23px;'>
+
+                    
+                    <div style='text-align: right;'>- Mat</div>
+                    </p>
+
+                    <button class="md-close">dismiss</button>
+                </div>
+            </div>
+        </div>
+        <div class="md-modal md-effect-1" id="modal-keyboard">
+            <div class="md-content">
+                <!-- <h3>Keyboard Shortcuts</h3> -->
+            </div>
+        </div>
+        <div class="md-modal md-effect-1" id="modal-soundcloud">
+
+                </div>
+            </div>
+        </div>
+       <!-- <div class='menu menu-open'>
+            <ul>
+                <li id='circle' viz-num='0' class='active'><div class='clicker'></div></li>
+          <li id='voronoi' viz-num='7'></li> 
+
+
+            </ul>
+        </div>-->
+
+        <div class='wrapper'>
+           <!--<div class='vinyl-container'><i class="icon-vinyl"></i></div>-->
+
+            <div id="mp3_player" class='fade'>
+                <div id="audio_box"></div> <i id='fullscreen' class="icon-resize-full-alt"></i>
+            </div>
+
+            <div id='progressBar' class='progressBar'></div>
+            <div class='song-metadata'></div>
+            <div class='menu-controls'>
+                <i class="i icon-backward2"></i> 
+                <i class="i icon-pause"></i> 
+                <i class="i icon-forward2"></i> 
+                <i class="i icon-microphone" data-hovertext='Connect to the microphone on your computer.' data-hovertext-no-ssl='Please switch to a secure https:// connection and try again'></i> 
+            </div>
+
+            <div class='menu-wide'>
+                <div class="slider slider-volume"><span>adjust volume</span>
+                    <input min="0" max="100" value="100" id='slider-volume' type="range">
+                </div>
+                <div class="slider"><span>adjust sensitivity</span>
+                    <input min="1" max="100" value="20" id='slider' type="range">
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
