@@ -1,0 +1,69 @@
+{
+  "name": "visicality",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Music Visualizer built w/ JavaScript, D3.js and Web Audio API",
+  "type": "module",
+  "engines": {
+    "node": ">= 16.0.0",
+    "npm": ">= 8.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "eslint": "eslint . --ext .js --fix --ignore-path .gitignore",
+    "lint": "concurrently --raw npm:eslint npm:prettier",
+    "prettier": "prettier \"**/*.{html,json,md}\" --write --ignore-path .gitignore",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekwolpert/Visicality.git"
+  },
+  "author": "Derek Wolpert <me@derekwolpert.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/derekwolpert/Visicality/issues"
+  },
+  "homepage": "https://github.com/derekwolpert/Visicality#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@fortawesome/free-brands-svg-icons": "^6.1.2",
+    "@fortawesome/free-regular-svg-icons": "^6.1.2",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "d3": "^7.6.1",
+    "fscreen": "^1.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "concurrently": "^7.3.0",
+    "eslint": "^8.21.0",
+    "eslint-config-standard": "^17.0.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.54.3",
+    "vite": "^3.0.4"
+  },
+  "browserslist": [
+    "> 2% in US and last 2 versions and supports es6-module",
+    "not dead"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022
+    },
+    "extends": [
+      "eslint:recommended",
+      "standard"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
+  }
+}

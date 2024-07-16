@@ -1,0 +1,39 @@
+//SCSS for loading circle's animations
+
+//#loadingCircle{
+  //position: absolute;
+  //top: 50%;
+  //left: 50%;
+  //width: 100px;
+  //height: 100px;
+  //margin-top: -50px; 
+  //margin-left: -50px; 
+  //border-radius: 50%;
+//}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.loading {
+  animation: pulse 1s infinite;
+}
+/*
+@keyframes breathe{
+  0%, 100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.5);
+  }
+}
+
+.idle{
+  animation: breathe 15s infinite;
+}*/
+

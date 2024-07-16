@@ -1,0 +1,21 @@
+//solid green circle that pulses during loading_circle from animation.scss
+import * as d3 from 'd3'
+
+export const loadingCircle = () => {
+  const h = window.innerHeight
+  const w = window.innerWidth
+
+  const svg = d3.select('body').append('svg')
+    .attr('width', w)
+    .attr('height', h)
+    .attr('id','loadingCircle')
+    .attr('class', 'loading')
+    
+    svg
+      .append('circle')
+      .attr('cx', w / 2)
+      .attr('cy', h / 2)
+      .attr('r', Math.min(w, h) / 4) //radius
+      .style('fill', 'green');
+
+  }
